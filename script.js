@@ -33,3 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+
+// Toggle View More / View Less for Projects
+const toggleBtn = document.getElementById('toggle-projects');
+const moreProjects = document.getElementById('more-projects');
+
+if (toggleBtn && moreProjects) {
+    toggleBtn.addEventListener('click', () => {
+        const isCollapsed = moreProjects.classList.contains('max-h-0');
+
+        if (isCollapsed) {
+            moreProjects.classList.remove('max-h-0');
+            moreProjects.classList.add('max-h-[2000px]');
+            toggleBtn.textContent = 'View Less';
+        } else {
+            moreProjects.classList.add('max-h-0');
+            moreProjects.classList.remove('max-h-[2000px]');
+            toggleBtn.textContent = 'View More';
+
+            // Smooth scroll back to projects title
+            document.getElementById('projects').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+}
