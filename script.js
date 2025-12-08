@@ -58,3 +58,68 @@ if (toggleBtn && moreProjects) {
         }
     });
 }
+
+const ecBtn = document.getElementById('toggle-extracurriculars');
+const ecMore = document.getElementById('more-extracurriculars');
+
+const DURATION = 600; // ms (try 700–900 if you want even smoother)
+
+function easeInOut(t) {
+  return t < 0.5
+    ? 2 * t * t
+    : 1 - Math.pow(-2 * t + 2, 2) / 2;
+}
+
+function animateHeight(from, to, callback) {
+  const start = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - start) / DURATION, 1);
+    const eased = easeInOut(progress);
+    const height = from + (to - from) * eased;
+
+    ecMore.style.height = `${height}px`;
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      callback && callback();
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+if (ecBtn && ecMore) {
+  ecBtn.addEventListener('click', () => {
+    const isCollapsed = ecMore.clientHeight === 0;
+
+    if (isCollapsed) {
+      // Expand
+      ecMore.style.display = 'block';
+      const targetHeight = ecMore.scrollHeight;
+
+      ecMore.classList.remove('opacity-0');
+      ecMore.classList.add('opacity-100');
+
+      animateHeight(0, targetHeight, () => {
+        ecMore.style.height = 'auto';
+      });
+
+      ecBtn.textContent = 'View Less';
+    } else {
+      // Collapse
+      const currentHeight = ecMore.scrollHeight;
+
+      ecMore.classList.add('opacity-0');
+      ecMore.classList.remove('opacity-100');
+
+      animateHeight(currentHeight, 0, () => {
+        ecBtn.textContent = 'View More';
+        document
+          .getElementById('extracurriculars')
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  });
+}

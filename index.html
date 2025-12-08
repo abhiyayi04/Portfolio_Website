@@ -27,6 +27,22 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        .skill-pill {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        .skill-pill:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
     </style>
 </head>
 
@@ -36,19 +52,51 @@
     <nav class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 font-bold text-xl text-primary">Abhi.</div>
+                <div class="flex-shrink-0 font-bold text-xl text-primary">Abhi's Portfolio</div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#hero"
-                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Home
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
                         <a href="#about"
-                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">About
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
+                        <a href="#skills"
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Skills
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
                         <a href="#education"
-                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Education</a>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Education
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
                         <a href="#experience"
-                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Experience</a>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Experience
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
                         <a href="#projects"
-                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Projects
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
+                        <a href="#extracurriculars"
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Extra-Curriculars
+                            <span
+                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -90,14 +138,14 @@
             <h2 class="text-3xl font-bold text-center mb-12 text-dark">About Me</h2>
             <div class="prose prose-lg mx-auto text-secondary text-center space-y-8">
                 <p class="mb-6">
-                    I am currently pursuing a B.S. in Information Technology at <strong>Arizona State
-                        University</strong>, expecting to graduate in May 2026. With a <strong>3.99 GPA</strong> and a
+                    I am currently pursuing a B.S. in Information Technology at Arizona State
+                        University, expecting to graduate in May 2026. With a 3.99 GPA and a
                     consistent presence on the Dean's List, I am dedicated to academic excellence and technical mastery.
                 </p>
                 <p>
                     My passion lies in building scalable software solutions and exploring the frontiers of Artificial
-                    Intelligence. I have hands-on experience in <strong>Data Analysis</strong> and <strong>Full-Stack
-                        Development</strong>, proficient in Python, SQL, AWS, and Java. Whether it's optimizing data
+                    Intelligence. I have hands-on experience in Data Analysis and Full-Stack
+                        Development, proficient in Python, SQL, AWS, and Java. Whether it's optimizing data
                     pipelines or developing AI-driven applications, I thrive on solving complex problems with clean,
                     efficient code.
                 </p>
@@ -108,63 +156,99 @@
                     I am actively seeking internship opportunities where I can collaborate with experienced engineers, take ownership of impactful projects, and continue refining my engineering skills while learning best practices in real-world environments.
                 </p>
             </div>
+        </div>
+    </section>
 
-            <!-- Skills Grid -->
-            <div class="mt-16">
-                <h3 class="text-xl font-semibold text-center mb-8">Technical Arsenal</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Python</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Java</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">R Language</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Bash</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">HTML/CSS</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">AWS</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Apache Spark</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Tableau</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">React/JS</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Django</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Flask</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Docker</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Linux</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Git</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">MySQL</span>
-                    </div>
-                    <div class="p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
-                        <span class="font-bold text-slate-700">Kubernetes</span>
+    <!-- Skills Section -->
+
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-dark">
+                Technical Arsenal
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <!-- Programming Languages -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
+                            hover:shadow-xl hover:-translate-y-1
+                            transition-all duration-300">
+                    <h3 class="text-xl font-bold text-primary mb-4">
+                        Programming Languages
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">R</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">Java</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">HTML</span>
+                        <span class="skill-pill">CSS</span>
+                        <span class="skill-pill">Bash</span>
+                        <span class="skill-pill">Go</span>
                     </div>
                 </div>
+
+                <!-- Big Data & Analytics -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
+                            hover:shadow-xl hover:-translate-y-1
+                            transition-all duration-300">
+                    <h3 class="text-xl font-bold text-primary mb-4">
+                        Big Data & Analytics
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">Apache Spark</span>
+                        <span class="skill-pill">Airflow</span>
+                        <span class="skill-pill">Kafka</span>
+                        <span class="skill-pill">Snowflake</span>
+                        <span class="skill-pill">Tableau</span>
+                        <span class="skill-pill">Alteryx</span>
+                    </div>
+                </div>
+
+                <!-- Libraries & Frameworks -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
+                            hover:shadow-xl hover:-translate-y-1
+                            transition-all duration-300">
+                    <h3 class="text-xl font-bold text-primary mb-4">
+                        Libraries & Frameworks
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">Django</span>
+                        <span class="skill-pill">Flask</span>
+                        <span class="skill-pill">RESTful APIs</span>
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">Scikit-Learn</span>
+                        <span class="skill-pill">TensorFlow</span>
+                        <span class="skill-pill">NumPy</span>
+                        <span class="skill-pill">Pandas</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
+                            hover:shadow-xl hover:-translate-y-1
+                            transition-all duration-300">
+                    <h3 class="text-xl font-bold text-primary mb-4">
+                        Tools
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">Linux</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">GitHub</span>
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">Kubernetes</span>
+                        <span class="skill-pill">MySQL Workbench</span>
+                        <span class="skill-pill">Microsoft Office</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
+
+
 
     <!-- Education Section -->
     <section id="education" class="py-20 bg-slate-50">
@@ -214,6 +298,124 @@
         </div>
     </section>
     
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16 text-dark">Certifications</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-lg font-bold text-dark mb-2">
+                        Back-End Developer Professional Certificate
+                    </h3>
+                    <p class="text-primary font-medium mb-1">Meta</p>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Focused on backend development concepts including APIs, databases, authentication,
+                        and scalable server-side applications.
+                    </p>
+                    <span
+                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
+                        Issued Nov 2025
+                    </span>
+                </div>
+
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-lg font-bold text-dark mb-2">
+                        Machine Learning Specialization
+                    </h3>
+                    <p class="text-primary font-medium mb-1">
+                        DeepLearning.AI & Stanford Online
+                    </p>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Covered supervised learning, neural networks, and practical ML workflows,
+                        with hands-on projects using Python.
+                    </p>
+                    <span
+                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
+                        Issued Aug 2025
+                    </span>
+                </div>
+
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-lg font-bold text-dark mb-2">
+                        Alteryx Designer Core Certification
+                    </h3>
+                    <p class="text-primary font-medium mb-1">
+                        Alteryx
+                    </p>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Demonstrated proficiency in building end-to-end data workflows using Alteryx Designer. 
+                        Experienced in data preparation, transformation, joins, aggregations, and analytics automation for scalable data processing.
+                    </p>
+                    <span
+                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
+                        Issued Dec 2025
+                    </span>
+                </div>
+
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-lg font-bold text-dark mb-2">
+                        Project Management Professional Certificate
+                    </h3>
+                    <p class="text-primary font-medium mb-1">
+                        Google
+                    </p>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Gained practical experience in managing projects using Agile and traditional methodologies. 
+                        Covered project planning, stakeholder communication, risk management, timelines, and execution using industry-standard tools and frameworks.
+                    </p>
+                    <span
+                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
+                        Issued Dec 2025
+                    </span>
+                </div>
+
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-lg font-bold text-dark mb-2">
+                        Introduction to Data Engineering
+                    </h3>
+                    <p class="text-primary font-medium mb-1">
+                        IBM
+                    </p>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Learned core data engineering concepts including data pipelines, ETL processes, data warehousing, and cloud-based data systems. 
+                        Worked with structured data workflows to support scalable, data-driven applications.
+                    </p>
+                    <span
+                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
+                        Issued Dec 2025
+                    </span>
+                </div>
+
+                <div
+                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-lg font-bold text-dark mb-2">
+                        Introduction to Microsoft Dynamics 365
+                    </h3>
+                    <p class="text-primary font-medium mb-1">
+                        Microsoft
+                    </p>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Explored Microsoft Dynamics 365 fundamentals, including CRM and ERP capabilities. 
+                        Learned how Dynamics supports business processes, data integration, customer insights, and enterprise application workflows.
+                    </p>
+                    <span
+                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
+                        Issued Dec 2025
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
     <!-- Experience Section -->
     <section id="experience" class="py-20 bg-slate-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -295,8 +497,10 @@
                         </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Stock
-                            Trading System</h3>
+                        <a href="https://github.com/abhiyayi04/Trading-Platform-v2" target="_blank" rel="noopener noreferrer" class="block"> 
+                            <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Stock
+                                Trading System</h3>
+                        </a>
                         <p class="text-slate-600 text-sm mb-4">Architected a scalable 3-tier full-stack trading
                             simulator using Flask and AWS. Implemented real-time price generation and secure auth,
                             enabling effective portfolio management training.</p>
@@ -322,8 +526,10 @@
                         </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Plant
-                            Disease Classification</h3>
+                        <a href="https://github.com/abhiyayi04/Plant_Disease_Classification_Model" target="_blank" rel="noopener noreferrer" class="block">
+                            <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Plant
+                                Disease Classification</h3>
+                        </a>
                         <p class="text-slate-600 text-sm mb-4">Achieved 87% test accuracy in classifying plant leaf
                             images using a custom CNN model. Optimized preprocessing pipelines to reduce training time
                             by 30% compared to baseline.</p>
@@ -349,8 +555,10 @@
                         </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                            Multi-Doc Q&A System</h3>
+                        <a href="https://github.com/abhiyayi04/QnA_LLM_Chatbot" target="_blank" rel="noopener noreferrer" class="block">
+                            <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                                Multi-Doc Q&A System</h3>
+                        </a>
                         <p class="text-slate-600 text-sm mb-4">Engineered an AI-driven search system improving query
                             response times by 40% via vectorized search. Achieved ~90% accuracy and saved 2-3 minutes
                             per file in document lookup.</p>
@@ -379,9 +587,11 @@
                             </div>
 
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                                Movie Review Sentiment Analysis
-                                </h3>
+                                <a href="https://github.com/abhiyayi04/Sentiment_Analysis_Model" target="_blank" rel="noopener noreferrer" class="block">
+                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                                    Movie Review Sentiment Analysis
+                                    </h3>
+                                </a>
 
                                 <p class="text-slate-600 text-sm mb-4">
                                 Built an LSTM-based deep learning model to classify IMDB movie reviews as positive or negative.
@@ -408,9 +618,11 @@
                             </div>
 
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                                House Price Prediction
-                                </h3>
+                                <a href="https://github.com/abhiyayi04/House_Price_Prediction_model" target="_blank" rel="noopener noreferrer" class="block">
+                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                                    House Price Prediction
+                                    </h3>
+                                </a>
 
                                 <p class="text-slate-600 text-sm mb-4">
                                 Developed a regression-based model to predict housing prices using features such as square footage,
@@ -437,9 +649,11 @@
                             </div>
 
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                                Movie Revenue Correlation Analysis
-                                </h3>
+                                <a href="https://github.com/abhiyayi04/Movies_Correlation_Project" target="_blank" rel="noopener noreferrer" class="block">
+                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                                    Movie Revenue Correlation Analysis
+                                    </h3>
+                                </a>
 
                                 <p class="text-slate-600 text-sm mb-4">
                                 Conducted exploratory data analysis to identify relationships between movie attributes and gross revenue. 
@@ -467,6 +681,220 @@
             </div>
         </div>
     </section>
+
+    <!-- Extra-Curricular Section -->
+
+    <section id="extracurriculars" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-dark">
+            Extra-Curriculars & Hobbies
+            </h2>
+
+            <div class="space-y-20">
+
+                <!-- IMAGE -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="w-full h-80 overflow-hidden rounded-xl shadow-lg">
+                        <img
+                            src="assets/datafest.jpeg"
+                            alt="ASA DataFest team"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3">1st Place - ASA DataFest</h3>
+                        <p>
+                            Analyzed how COVID-19 and shifting market dynamics impacted U.S. office leasing and asking rents from 2018-2024. 
+                            During a weekend-long datathon, our team consolidated and cleaned multiple commercial real-estate datasets 
+                            (leasing activity, availability, building class, and macroeconomic indicators) into a unified modeling dataset of 
+                            504 complete market observations. 
+                        </p>
+                        <p>
+                            Performed exploratory data analysis to uncover post-COVID patterns across sectors 
+                            and metros, including faster recovery in Texas markets, resilience in Class A assets, and contrasting dynamics between 
+                            cities like Miami and San Francisco. Built and evaluated multiple regression specifications in SAS, including main-effects, 
+                            interaction, and nonlinear models, carefully balancing explanatory power and model stability. Delivered a parsimonious 
+                            main-effects linear regression model explaining approximately 72% of rent variation, with clean diagnostics and minimal 
+                            multicollinearity. 
+                        </p>
+                        <p>
+                            The final model distinguished the different pricing impacts of direct versus sublet availability and 
+                            quantified demand momentum via leasing volume, producing actionable insights for pricing, underwriting, and leasing strategy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- IMAGE -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                    <h3 class="text-xl font-bold mb-3">2nd Place - AWS Jam (ASU)</h3>
+                    <p>
+                        AWS Jam is a competitive, gamified cloud learning experience where participants solve real-world infrastructure 
+                        and application challenges using AWS services in a sandboxed environment. Competing in a team-based AWS Jam Event 
+                        at ASU, I secured 2nd place by rapidly designing, deploying, and troubleshooting cloud solutions under time constraints.
+                    </p>
+                    <p>
+                        Our team worked through open-ended scenarios involving core AWS services such as Amazon EC2, S3, RDS, and AWS Lambda, 
+                        addressing challenges across infrastructure provisioning, security configuration, and system optimization. Performance was 
+                        scored based on accuracy and speed, with live leaderboards reinforcing both technical execution and collaborative problem-solving.
+                    </p>
+                    <p>
+                        This experience strengthened my practical cloud engineering skills, reinforced AWS best practices, and demonstrated my ability to 
+                        perform effectively in a competitive, fast-paced, real-world problem-solving environment.
+                    </p>
+                    </div>
+
+                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg">
+                        <img
+                            src="assets/awsjam.jpeg"
+                            alt="ASA DataFest team"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div
+                id="more-extracurriculars"
+                class="overflow-hidden space-y-20 mt-20 opacity-0 transition-opacity duration-300"
+                style="height: 0;"
+            >
+
+                <!-- IMAGE -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg">
+                        <img
+                            src="assets/tutoring.jpeg"
+                            alt="ASA DataFest team"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3">Executive Engineering Tutor</h3>
+                        <p>
+                            Selected as an Executive Engineering Tutor within the Fulton Schools of Engineering Tutoring Centers, 
+                            a dynamic academic support environment. Supported students across multiple learning formats while 
+                            fostering an engaging atmosphere centered on active learning, critical thinking, and problem-solving.
+                            This role strengthened my technical communication, leadership, mentorship, and cross-team collaboration 
+                            skills, while deepening my ability to explain complex technical concepts clearly to diverse learners.
+                        </p>
+                        <p>
+                            Delivered in-person and virtual tutoring to 20-30 students weekly in Python, Java, SQL, Database Management 
+                            Systems, and Linux, reinforcing core computer science and engineering concepts aligned with modern industry 
+                            practices. Assisted students in overcoming academic challenges in high-stakes coursework through guided 
+                            problem-solving, conceptual breakdowns, and real-world application of theory.
+                        </p>
+                        <p>
+                            Collaborated closely with faculty and a team of 10+ Learning Assistants to coordinate academic support efforts, 
+                            align tutoring strategies with course objectives, and improve communication between instructors and students. 
+                            Contributed to the development and refinement of course materials, participated in academic discussion boards to 
+                            provide timely learning support, and attended weekly leadership meetings to enhance tutoring effectiveness and program operations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- IMAGE-->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3">ASU Admissions Tour Guide</h3>
+                        <p>
+                            Served as a campus tour guide for Arizona State University's Student Admissions & Relations team, 
+                            leading prospective students and their families through the ASU campus. Delivered comprehensive 
+                            tours covering academic buildings, residence halls, student resources, and campus life while 
+                            answering questions related to academics, housing, involvement opportunities, and navigating the university environment.
+                        </p>
+                        <p>
+                            Provided firsthand insights and practical guidance to help incoming students transition smoothly 
+                            during their initial days at ASU, offering recommendations on campus resources, student organizations, 
+                            and academic support. Utilized Salesforce for family check-in and attendance tracking at the start of 
+                            each tour.
+                        </p>
+                        <p>
+                            This role significantly strengthened my communication, interpersonal, public speaking, and customer-facing 
+                            skills, as well as my ability to adapt explanations to diverse audiences in a professional setting.
+                        </p>
+                    </div>
+
+                    <div></div> <!-- spacer -->
+                </div>
+
+                <!-- IMAGE -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg">
+                        <img
+                            src="assets/sports.jpeg"
+                            alt="ASA DataFest team"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3">Sports</h3>
+                        <p>
+                            An active sports enthusiast with a strong interest in athletics. Competed in Sun Devil 
+                            Intramural Basketball at Arizona State University, playing in organized 
+                            league settings that emphasized teamwork, strategy, and performance under pressure.
+                        </p>
+                        <p>
+                            Previously participated in district-level basketball competitions in India, gaining early 
+                            experience in competitive team sports and disciplined training environments. Also participated in a 
+                            sports day event hosted by an ASU student club, where my team secured 1st place, demonstrating 
+                            leadership, coordination, and competitive drive.
+                        </p>
+                        <p>
+                            Through sustained involvement in competitive sports, developed strong team collaboration, communication, 
+                            resilience, and time-management skills, successfully balancing athletic commitments alongside academic 
+                            and professional responsibilities.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- IMAGE -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3">Model United Nations (IIMUN)</h3>
+                        <p>
+                            Participated in conferences organized by I.I.M.U.N., the world's largest youth-run organization 
+                            in India, dedicated to empowering young individuals to engage with global and national challenges 
+                            through dialogue and diplomacy. I.I.M.U.N. operates across 35 countries and 220 cities, touching 
+                            over 50 million lives through educational initiatives spanning workshops, conferences, literature 
+                            festivals, and policy simulations.
+                        </p>
+                        <p>
+                            Engaged in structured simulations of international and national governing bodies, including the 
+                            United Nations and Indian Parliament, where I debated policy issues, analyzed geopolitical scenarios, 
+                            and collaborated with diverse delegates to design realistic, solution-driven resolutions. These 
+                            experiences emphasized critical thinking, persuasive communication, negotiation, and collaborative 
+                            problem-solving under formal parliamentary procedures.
+                        </p>
+                        <p>
+                            Participation in I.I.M.U.N. strengthened my public speaking, diplomacy, and leadership skills, while 
+                            exposing me to global perspectives and enabling meaningful interaction with students from varied academic, 
+                            cultural, and socioeconomic backgrounds. The program played a key role in shaping my ability to articulate 
+                            complex ideas clearly, think globally, and engage constructively in high-stakes discussions.
+                        </p>
+                    </div>
+
+                    <div></div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-16">
+                <button
+                    id="toggle-extracurriculars"
+                    class="bg-primary text-white px-8 py-3 rounded-full font-semibold
+                        hover:bg-blue-700 transition-all shadow-lg hover:shadow-primary/30"
+                >
+                    View More
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
 
     <!-- Footer -->
     <footer class="bg-dark text-slate-400 py-12">
