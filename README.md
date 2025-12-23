@@ -4,8 +4,7 @@ A modern, responsive personal portfolio website built with **HTML**, **Tailwind 
 This site highlights my background, skills, certifications, experience, featured projects, and extracurriculars in a clean, recruiter-friendly format.
 
 ## Live Preview
-- abhiyayi04.github.io/Portfolio_Website/
-
+abhiyayi04.github.io/Portfolio_Website/ 
 ---
 
 ## Features
