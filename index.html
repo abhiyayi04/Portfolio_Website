@@ -11,9 +11,11 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#2563eb',
-                        secondary: '#475569',
-                        dark: '#0f172a',
+                        primary:  '#3b82f6',
+                        secondary:'#94a3b8',
+                        dark:     '#0d1117',
+                        surface:  '#131d2e',
+                        elevated: '#1c2a3e',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -24,78 +26,222 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-base:        #0d1117;
+            --bg-alt:         #0b1525;
+            --bg-surface:     #131d2e;
+            --bg-elevated:    #1c2a3e;
+            --border:         rgba(56, 100, 160, 0.22);
+            --border-hover:   rgba(59, 130, 246, 0.40);
+            --text-primary:   #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted:     #64748b;
+            --accent:         #3b82f6;
+            --accent-bright:  #60a5fa;
+            --accent-glow:    rgba(59, 130, 246, 0.15);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
         }
+
+        /* Subtle full-page radial glow fixed in background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 100vh;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59, 130, 246, 0.09) 0%, transparent 65%),
+                radial-gradient(ellipse 40% 30% at 85% 90%,  rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        nav, section, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero gradient */
+        #hero {
+            background: linear-gradient(155deg, #0d1117 0%, #0e1829 55%, #0d1117 100%);
+        }
+
+        /* Skill pills */
         .skill-pill {
             padding: 0.5rem 1rem;
             border-radius: 9999px;
             font-size: 0.875rem;
             font-weight: 500;
-            background: white;
-            border: 1px solid #e2e8f0;
-            color: #334155;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
             transition: all 0.2s ease;
             cursor: default;
         }
         .skill-pill:hover {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
+            background: rgba(59, 130, 246, 0.18);
+            color: #93c5fd;
+            border-color: rgba(59, 130, 246, 0.45);
+            box-shadow: 0 0 14px rgba(59, 130, 246, 0.12);
         }
+
+        /* General dark card */
+        .card-dark {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .card-dark:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-hover);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(59, 130, 246, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* Project card — includes overflow:hidden for colored header banner */
+        .project-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            background: var(--bg-elevated);
+            border-color: rgba(59, 130, 246, 0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* Blue badge / date pill */
+        .badge-blue {
+            background: rgba(59, 130, 246, 0.10);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.20);
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* Profile glow ring */
+        .profile-glow {
+            box-shadow:
+                0 0 0 3px rgba(59, 130, 246, 0.20),
+                0 0 40px rgba(59, 130, 246, 0.12),
+                0 8px 32px rgba(0, 0, 0, 0.50);
+        }
+
+        /* Primary CTA button */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 4px 18px rgba(59, 130, 246, 0.35);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            box-shadow: 0 6px 28px rgba(59, 130, 246, 0.50);
+            transform: translateY(-1px);
+        }
+
+        /* Secondary/outline button */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: #cbd5e1;
+            font-weight: 600;
+            border: 1px solid rgba(100, 140, 200, 0.35);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.07);
+            border-color: rgba(100, 160, 240, 0.55);
+            color: #e2e8f0;
+            transform: translateY(-1px);
+        }
+
+        /* Tech tag inside project cards */
+        .tech-tag {
+            background: rgba(13, 17, 23, 0.80);
+            border: 1px solid rgba(56, 100, 160, 0.30);
+            color: #94a3b8;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Toggle buttons (View More / View Less) */
+        .btn-toggle {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.30);
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-toggle:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            box-shadow: 0 6px 22px rgba(59, 130, 246, 0.45);
+            transform: translateY(-1px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.30); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.50); }
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 antialiased">
+<body class="bg-[#0d1117] text-slate-300 antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <nav class="fixed w-full bg-[#0d1117]/90 backdrop-blur-md border-b border-slate-800/50 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 font-bold text-xl text-primary">Abhi's Portfolio</div>
+                <div class="flex-shrink-0 font-bold text-xl text-blue-400">Abhi's Portfolio</div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="#hero"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Home
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">Home
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a href="#about"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">About
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">About
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a href="#skills"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Skills
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">Skills
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a href="#education"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Education
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">Education
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a href="#experience"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Experience
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">Experience
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a href="#projects"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Projects
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">Projects
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                         <a href="#extracurriculars"
-                            class="relative group px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:text-primary hover:bg-blue-50">Extra-Curriculars
-                            <span
-                                class="absolute left-0 -bottom-1 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full">
-                            </span>
+                            class="relative group px-3 py-2 rounded-md text-sm font-medium text-slate-300 transition-all duration-300 hover:text-blue-400 hover:bg-blue-950/50">Extra-Curriculars
+                            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     </div>
                 </div>
@@ -107,25 +253,23 @@
     <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-28 px-4">
         <div class="max-w-7xl mx-auto text-center">
             <div class="mb-8 relative inline-block">
-                <div class="absolute inset-0 bg-primary blur-2xl opacity-20 rounded-full"></div>
+                <div class="absolute inset-0 bg-blue-500 blur-2xl opacity-10 rounded-full"></div>
                 <img src="assets/Headshot.jpeg" alt="Abhi Chandra Yayi"
-                    class="relative w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-4 border-white shadow-xl mx-auto">
+                    class="relative w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-2 border-slate-700 profile-glow mx-auto">
             </div>
-            <h1 class="text-4xl md:text-6xl font-bold text-dark mb-4 tracking-tight">
-                Hi, I'm <span class="text-primary">Abhi Chandra Yayi</span>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-4 tracking-tight">
+                Hi, I'm <span class="text-blue-400">Abhi Chandra Yayi</span>
             </h1>
-            <p class="text-xl md:text-2xl text-secondary max-w-2xl mx-auto mb-8">
+            <p class="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-8">
                 Aspiring AI and Software Engineer
             </p>
             <div class="flex justify-center gap-4 flex-wrap">
-                <!-- LinkedIn -->
                 <a href="https://linkedin.com/in/abhi-chandra-yayi/" target="_blank"
-                    class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-primary/30">
+                    class="btn-primary px-8 py-3 rounded-full">
                     Connect on LinkedIn
                 </a>
-                <!-- Resume -->
                 <a href="assets/AbhiYayi_SWEResume.pdf" download
-                    class="bg-white text-slate-700 border border-slate-200 px-8 py-3 rounded-full font-semibold hover:bg-slate-50 transition-all shadow-sm">
+                    class="btn-secondary px-8 py-3 rounded-full">
                     Download Resume
                 </a>
             </div>
@@ -133,27 +277,27 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20 bg-[#0d1117] border-t border-slate-800/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-12 text-dark">About Me</h2>
-            <div class="prose prose-lg mx-auto text-secondary text-center space-y-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-slate-100">About Me</h2>
+            <div class="prose prose-lg mx-auto text-slate-400 text-center space-y-8">
                 <p class="mb-6">
-                    I'm an Information Technology student at Arizona State University, graduating in May 2026 with a 
-                    4.0 GPA and consistent recognition on the Dean's List . I'm passionate about building scalable 
+                    I'm an Information Technology student at Arizona State University, graduating in May 2026 with a
+                    4.0 GPA and consistent recognition on the Dean's List. I'm passionate about building scalable
                     software systems and exploring the intersection of artificial intelligence and software engineering.
                 </p>
                 <p>
-                    My experience spans full-stack development and applied machine learning. I've built systems like 
-                    SmartLedger, developed high-accuracy deep learning models, and engineered a RAG-based AI assistant 
-                    for semantic document search. I approach every project with a user-first mindset, focusing on solving 
-                    real problems, whether that's reducing manual effort, improving data reliability, or enabling faster 
-                    access to information. I enjoy taking ideas from design to deployment, while optimizing for performance, 
+                    My experience spans full-stack development and applied machine learning. I've built systems like
+                    SmartLedger, developed high-accuracy deep learning models, and engineered a RAG-based AI assistant
+                    for semantic document search. I approach every project with a user-first mindset, focusing on solving
+                    real problems, whether that's reducing manual effort, improving data reliability, or enabling faster
+                    access to information. I enjoy taking ideas from design to deployment, while optimizing for performance,
                     scalability, and intuitive user experience.
                 </p>
                 <p>
-                    Professionally, I've worked as a Data Analyst Intern, where I automated data pipelines, validated 
-                    datasets using SQL, and built web scraping tools to improve data quality. As an Executive Engineering 
-                    Tutor at ASU, I mentor 20+ students weekly in Python, databases, and systems, strengthening both my 
+                    Professionally, I've worked as a Data Analyst Intern, where I automated data pipelines, validated
+                    datasets using SQL, and built web scraping tools to improve data quality. As an Executive Engineering
+                    Tutor at ASU, I mentor 20+ students weekly in Python, databases, and systems, strengthening both my
                     technical and communication skills.
                 </p>
             </div>
@@ -161,20 +305,17 @@
     </section>
 
     <!-- Skills Section -->
-
-    <section id="skills" class="py-20 bg-white">
+    <section id="skills" class="py-20 bg-[#0b1525] border-t border-slate-800/40">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-16 text-dark">
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">
                 Technical Arsenal
             </h2>
 
             <div class="grid md:grid-cols-2 gap-8">
 
                 <!-- Programming Languages -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
-                            hover:shadow-xl hover:-translate-y-1
-                            transition-all duration-300">
-                    <h3 class="text-xl font-bold text-primary mb-4">
+                <div class="card-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">
                         Programming Languages
                     </h3>
                     <div class="flex flex-wrap gap-3">
@@ -190,11 +331,9 @@
                     </div>
                 </div>
 
-                <!-- Big Data & Analytics -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
-                            hover:shadow-xl hover:-translate-y-1
-                            transition-all duration-300">
-                    <h3 class="text-xl font-bold text-primary mb-4">
+                <!-- Libraries & Frameworks -->
+                <div class="card-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">
                         Libraries & Frameworks
                     </h3>
                     <div class="flex flex-wrap gap-3">
@@ -211,11 +350,9 @@
                     </div>
                 </div>
 
-                <!-- machine learning -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
-                            hover:shadow-xl hover:-translate-y-1
-                            transition-all duration-300">
-                    <h3 class="text-xl font-bold text-primary mb-4">
+                <!-- AI Engineering -->
+                <div class="card-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">
                         AI Engineering
                     </h3>
                     <div class="flex flex-wrap gap-3">
@@ -230,10 +367,8 @@
                 </div>
 
                 <!-- Tools -->
-                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100
-                            hover:shadow-xl hover:-translate-y-1
-                            transition-all duration-300">
-                    <h3 class="text-xl font-bold text-primary mb-4">
+                <div class="card-dark rounded-2xl p-6">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4">
                         Tools
                     </h3>
                     <div class="flex flex-wrap gap-3">
@@ -252,40 +387,33 @@
         </div>
     </section>
 
-
-
     <!-- Education Section -->
-    <section id="education" class="py-20 bg-slate-50">
+    <section id="education" class="py-20 bg-[#0d1117] border-t border-slate-800/40">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-16 text-dark">Education</h2>
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">Education</h2>
 
             <div class="flex justify-center">
-                <div
-                    class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 max-w-3xl w-full">
-                    
+                <div class="card-dark p-8 rounded-2xl max-w-3xl w-full">
+
                     <div class="flex justify-between items-start flex-wrap gap-4 mb-4">
                         <div>
-                            <h3 class="text-xl font-bold text-dark">
+                            <h3 class="text-xl font-bold text-slate-100">
                                 Bachelor of Science in Information Technology
                             </h3>
-                            <p class="text-primary font-medium mt-1">
+                            <p class="text-blue-400 font-medium mt-1">
                                 Arizona State University
                             </p>
                         </div>
-
-                        <span
-                            class="text-sm font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                            Graduated May 2026
-                        </span>
+                        <span class="badge-blue">Graduated May 2026</span>
                     </div>
 
-                    <p class="text-slate-600 mb-4">
-                        <strong>GPA:</strong> 4.0 / 4.0 &nbsp;•&nbsp;
-                        <strong>Dean's List:</strong> 7 consecutive semesters
+                    <p class="text-slate-400 mb-4">
+                        <strong class="text-slate-300">GPA:</strong> 4.0 / 4.0 &nbsp;•&nbsp;
+                        <strong class="text-slate-300">Dean's List:</strong> 7 consecutive semesters
                     </p>
 
-                    <div class="text-slate-600">
-                        <p class="font-medium mb-2">Relevant Coursework:</p>
+                    <div class="text-slate-400">
+                        <p class="font-medium mb-2 text-slate-300">Relevant Coursework:</p>
                         <ul class="list-disc list-inside space-y-1 text-sm">
                             <li>Object-Oriented Programming</li>
                             <li>Database Management Systems</li>
@@ -302,152 +430,114 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Certificates Section -->
-    <section id="certificates" class="py-20 bg-white">
+    <section id="certificates" class="py-20 bg-[#0b1525] border-t border-slate-800/40">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-16 text-dark">Certifications</h2>
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">Certifications</h2>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div
-                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-lg font-bold text-dark mb-2">
+
+                <div class="card-dark p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Back-End Developer Professional Certificate
                     </h3>
-                    <p class="text-primary font-medium mb-1">Meta</p>
-                    <p class="text-sm text-slate-600 mb-3">
+                    <p class="text-blue-400 font-medium mb-1">Meta</p>
+                    <p class="text-sm text-slate-400 mb-3">
                         Focused on backend development concepts including APIs, databases, authentication,
                         and scalable server-side applications.
                     </p>
-                    <span
-                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                        Issued Nov 2025
-                    </span>
+                    <span class="badge-blue">Issued Nov 2025</span>
                 </div>
 
-                <div
-                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-lg font-bold text-dark mb-2">
+                <div class="card-dark p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Machine Learning Specialization
                     </h3>
-                    <p class="text-primary font-medium mb-1">
+                    <p class="text-blue-400 font-medium mb-1">
                         DeepLearning.AI & Stanford Online
                     </p>
-                    <p class="text-sm text-slate-600 mb-3">
+                    <p class="text-sm text-slate-400 mb-3">
                         Covered supervised learning, neural networks, and practical ML workflows,
                         with hands-on projects using Python.
                     </p>
-                    <span
-                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                        Issued Aug 2025
-                    </span>
+                    <span class="badge-blue">Issued Aug 2025</span>
                 </div>
 
-                <div
-                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-lg font-bold text-dark mb-2">
+                <div class="card-dark p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Alteryx Designer Core Certification
                     </h3>
-                    <p class="text-primary font-medium mb-1">
-                        Alteryx
-                    </p>
-                    <p class="text-sm text-slate-600 mb-3">
-                        Demonstrated proficiency in building end-to-end data workflows using Alteryx Designer. 
+                    <p class="text-blue-400 font-medium mb-1">Alteryx</p>
+                    <p class="text-sm text-slate-400 mb-3">
+                        Demonstrated proficiency in building end-to-end data workflows using Alteryx Designer.
                         Experienced in data preparation, transformation, joins, aggregations, and analytics automation for scalable data processing.
                     </p>
-                    <span
-                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                        Issued Dec 2025
-                    </span>
+                    <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
-                <div
-                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-lg font-bold text-dark mb-2">
+                <div class="card-dark p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Project Management Professional Certificate
                     </h3>
-                    <p class="text-primary font-medium mb-1">
-                        Google
-                    </p>
-                    <p class="text-sm text-slate-600 mb-3">
-                        Gained practical experience in managing projects using Agile and traditional methodologies. 
+                    <p class="text-blue-400 font-medium mb-1">Google</p>
+                    <p class="text-sm text-slate-400 mb-3">
+                        Gained practical experience in managing projects using Agile and traditional methodologies.
                         Covered project planning, stakeholder communication, risk management, timelines, and execution using industry-standard tools and frameworks.
                     </p>
-                    <span
-                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                        Issued Dec 2025
-                    </span>
+                    <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
-                <div
-                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-lg font-bold text-dark mb-2">
+                <div class="card-dark p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Introduction to Data Engineering
                     </h3>
-                    <p class="text-primary font-medium mb-1">
-                        IBM
-                    </p>
-                    <p class="text-sm text-slate-600 mb-3">
-                        Learned core data engineering concepts including data pipelines, ETL processes, data warehousing, and cloud-based data systems. 
+                    <p class="text-blue-400 font-medium mb-1">IBM</p>
+                    <p class="text-sm text-slate-400 mb-3">
+                        Learned core data engineering concepts including data pipelines, ETL processes, data warehousing, and cloud-based data systems.
                         Worked with structured data workflows to support scalable, data-driven applications.
                     </p>
-                    <span
-                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                        Issued Dec 2025
-                    </span>
+                    <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
-                <div
-                    class="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                    <h3 class="text-lg font-bold text-dark mb-2">
+                <div class="card-dark p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Introduction to Microsoft Dynamics 365
                     </h3>
-                    <p class="text-primary font-medium mb-1">
-                        Microsoft
-                    </p>
-                    <p class="text-sm text-slate-600 mb-3">
-                        Explored Microsoft Dynamics 365 fundamentals, including CRM and ERP capabilities. 
+                    <p class="text-blue-400 font-medium mb-1">Microsoft</p>
+                    <p class="text-sm text-slate-400 mb-3">
+                        Explored Microsoft Dynamics 365 fundamentals, including CRM and ERP capabilities.
                         Learned how Dynamics supports business processes, data integration, customer insights, and enterprise application workflows.
                     </p>
-                    <span
-                        class="inline-block text-xs font-semibold px-3 py-1 bg-blue-50 text-blue-600 rounded-full">
-                        Issued Dec 2025
-                    </span>
+                    <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
             </div>
         </div>
     </section>
 
-
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-slate-50">
+    <section id="experience" class="py-20 bg-[#0d1117] border-t border-slate-800/40">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-16 text-dark">Experience</h2>
-            <div
-                class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">Experience</h2>
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-800/50 before:to-transparent">
 
                 <!-- Job 1 -->
-                <div
-                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div
-                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-[#1c2a3e] group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                         </svg>
                     </div>
-                    <div
-                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-bold text-lg text-dark">Data Analyst Intern</h3>
-                            <span class="text-xs font-semibold px-2 py-1 bg-blue-50 text-blue-600 rounded-full">Jun 2025
-                                - Jul 2025</span>
+                    <div class="card-dark w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2 flex-wrap gap-2">
+                            <h3 class="font-bold text-lg text-slate-100">Data Analyst Intern</h3>
+                            <span class="badge-blue">Jun 2025 - Jul 2025</span>
                         </div>
-                        <div class="text-primary font-medium mb-3">Food Forest AI</div>
-                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                        <div class="text-blue-400 font-medium mb-3">Food Forest AI</div>
+                        <ul class="list-disc list-inside text-sm text-slate-400 space-y-1">
                             <li>Automated data cleaning of 500+ records using Python/Regex, reducing time by 80%.</li>
                             <li>Validated datasets with SQL, improving ingestion reliability by 40%.</li>
                             <li>Developed web scraping scripts to increase dataset completeness by 60%.</li>
@@ -456,25 +546,21 @@
                 </div>
 
                 <!-- Job 2 -->
-                <div
-                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div
-                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-[#1c2a3e] group-[.is-active]:bg-primary text-slate-500 group-[.is-active]:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                         </svg>
                     </div>
-                    <div
-                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-bold text-lg text-dark">Executive Engineering Tutor</h3>
-                            <span class="text-xs font-semibold px-2 py-1 bg-blue-50 text-blue-600 rounded-full">Sep 2024
-                                - May 2026</span>
+                    <div class="card-dark w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl">
+                        <div class="flex justify-between items-center mb-2 flex-wrap gap-2">
+                            <h3 class="font-bold text-lg text-slate-100">Executive Engineering Tutor</h3>
+                            <span class="badge-blue">Sep 2024 - May 2026</span>
                         </div>
-                        <div class="text-primary font-medium mb-3">Arizona State University</div>
-                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-1">
+                        <div class="text-blue-400 font-medium mb-3">Arizona State University</div>
+                        <ul class="list-disc list-inside text-sm text-slate-400 space-y-1">
                             <li>Tutored 20-30 students weekly in Python, Java, SQL, and Linux.</li>
                             <li>Coordinated with faculty and 10+ Learning Assistants to enhance support systems.</li>
                         </ul>
@@ -486,14 +572,13 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-20 bg-[#0b1525] border-t border-slate-800/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-16 text-dark">Featured Projects</h2>
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">Featured Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- Project 1 -->
-                <div
-                    class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+                <div class="project-card group">
                     <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -503,28 +588,22 @@
                     </div>
                     <div class="p-6">
                         <a href="https://github.com/abhiyayi04/SmartLedger" target="_blank" rel="noopener noreferrer" class="block">
-                            <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">SmartLedger</h3>
+                            <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">SmartLedger</h3>
                         </a>
-                        <p class="text-slate-600 text-sm mb-4">Full-stack bookkeeping system with AI-based expense 
+                        <p class="text-slate-400 text-sm mb-4">Full-stack bookkeeping system with AI-based expense
                             categorization, reducing manual tracking and simplifying financial management for users.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Django</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Bootstrap</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">MySQL</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">OpenAI</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Git</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">Git</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div
-                    class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+                <div class="project-card group">
                     <div class="h-48 bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -534,27 +613,22 @@
                     </div>
                     <div class="p-6">
                         <a href="https://github.com/abhiyayi04/Plant_Disease_Classifier" target="_blank" rel="noopener noreferrer" class="block">
-                            <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">Plant
+                            <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">Plant
                                 Disease Classifier</h3>
                         </a>
-                        <p class="text-slate-600 text-sm mb-4">Deep learning model to detect plant diseases from images with 98.2%, 
+                        <p class="text-slate-400 text-sm mb-4">Deep learning model to detect plant diseases from images with 98.2%,
                             using A/B testing across model variants to improve accuracy and enable fast, reliable diagnosis.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">PyTorch</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">W&B</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">CNN</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Streamlit</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">W&B</span>
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">Streamlit</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div
-                    class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+                <div class="project-card group">
                     <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
@@ -564,155 +638,170 @@
                     </div>
                     <div class="p-6">
                         <a href="https://github.com/abhiyayi04/RAG_Doc_Assistant" target="_blank" rel="noopener noreferrer" class="block">
-                            <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                            <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
                                 AI Document Assistant</h3>
                         </a>
-                        <p class="text-slate-600 text-sm mb-4">AI-powered document search system that retrieves precise 
+                        <p class="text-slate-400 text-sm mb-4">AI-powered document search system that retrieves precise
                             answers from PDFs, reducing manual lookup time by 80% and improving information access.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">FastAPI</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">RAG</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Inngest</span>
-                            <span
-                                class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Qdrant</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">RAG</span>
+                            <span class="tech-tag">Inngest</span>
+                            <span class="tech-tag">Qdrant</span>
+                            <span class="tech-tag">Docker</span>
                         </div>
                     </div>
                 </div>
             </div>
-                <!-- Extra Projects (Hidden by default) -->
-                <div id="more-projects" class="max-h-0 overflow-hidden transition-all duration-500 mt-8">
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Project 4 -->
-                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-                            <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                                </svg>
-                            </div>
-                            <div class="p-6">
-                                <a href="https://github.com/abhiyayi04/Trading-Platform-v2" target="_blank" rel="noopener noreferrer" class="block">
-                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
-                                    Stock Trading Simulator
-                                    </h3>
-                                </a>
-                                <p class="text-slate-600 text-sm mb-4">Architected a scalable 3-tier full-stack trading
-                                    simulator using Flask and AWS. Implemented real-time price generation and secure auth,
-                                    enabling effective portfolio management training.</p>
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Flask</span>
-                                    <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">MySQL</span>
-                                    <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">AWS</span>
-                                    <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">HTML</span>
-                                    <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">CSS</span>
-                                </div>
+
+            <!-- Extra Projects (Hidden by default) -->
+            <div id="more-projects" class="max-h-0 overflow-hidden transition-all duration-500 mt-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project 4 -->
+                    <div class="project-card group">
+                        <div class="h-48 bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <a href="https://github.com/abhiyayi04/TaskFlow" target="_blank" rel="noopener noreferrer" class="block">
+                                <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
+                                    TaskFlow
+                                </h3>
+                            </a>
+                            <p class="text-slate-400 text-sm mb-4">Built an asynchronous job processing system using Java 
+                                and Spring Boot, enabling reliable background task execution with queueing, retries, and 
+                                scheduling.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Multithreading</span>
+                                <span class="tech-tag">Docker</span>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Project 5 -->
-                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-                            <div class="h-48 bg-gradient-to-br from-emerald-500 to-cyan-600 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
+                    <!-- Project 5 -->
+                    <div class="project-card group">
+                        <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <a href="https://github.com/abhiyayi04/Trading-Platform-v2" target="_blank" rel="noopener noreferrer" class="block">
+                                <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
+                                    Stock Trading Simulator
+                                </h3>
+                            </a>
+                            <p class="text-slate-400 text-sm mb-4">Architected a scalable 3-tier full-stack trading
+                                simulator using Flask and AWS. Implemented real-time price generation and secure auth,
+                                enabling effective portfolio management training.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">Flask</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="project-card group">
+                        <div class="h-48 bg-gradient-to-br from-emerald-500 to-cyan-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-7 0h8M5 7h14" />
-                                </svg>
-                            </div>
-
-                            <div class="p-6">
-                                <a href="https://github.com/abhiyayi04/Sentiment_Analysis_Model" target="_blank" rel="noopener noreferrer" class="block">
-                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <a href="https://github.com/abhiyayi04/Sentiment_Analysis_Model" target="_blank" rel="noopener noreferrer" class="block">
+                                <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
                                     Movie Review Sentiment Analysis
-                                    </h3>
-                                </a>
-
-                                <p class="text-slate-600 text-sm mb-4">
+                                </h3>
+                            </a>
+                            <p class="text-slate-400 text-sm mb-4">
                                 Built an LSTM-based deep learning model to classify IMDB movie reviews as positive or negative.
                                 Achieved ~88% test accuracy through tokenization, embeddings, and sequence modeling.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">LSTM</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">TensorFlow</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">NLP</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Python</span>
-                                </div>
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">LSTM</span>
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">NLP</span>
+                                <span class="tech-tag">Python</span>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Project 6 -->
-                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-                            <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                        d="M3 9l9-7 9 7v8a2 2 0 01-2 2h-4a2 2 0 01-2-2V12H9v5a2 2 0 01-2 2H3z" />
-                                </svg>
-                            </div>
-
-                            <div class="p-6">
-                                <a href="https://github.com/abhiyayi04/House_Price_Prediction_model" target="_blank" rel="noopener noreferrer" class="block">
-                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                    <!-- Project 7 -->
+                    <div class="project-card group">
+                        <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M3 9l9-7 9 7v8a2 2 0 01-2 2h-4a2 2 0 01-2-2V12H9v5a2 2 0 01-2 2H3z" />
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <a href="https://github.com/abhiyayi04/House_Price_Prediction_model" target="_blank" rel="noopener noreferrer" class="block">
+                                <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
                                     House Price Predictor
-                                    </h3>
-                                </a>
-
-                                <p class="text-slate-600 text-sm mb-4">
+                                </h3>
+                            </a>
+                            <p class="text-slate-400 text-sm mb-4">
                                 Developed a regression-based model to predict housing prices using features such as square footage,
                                 BHK, bathrooms, and location. Achieved an R² score of ~0.86 after data cleaning and feature engineering.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Linear Regression</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Scikit-Learn</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">EDA</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Python</span>
-                                </div>
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">Linear Regression</span>
+                                <span class="tech-tag">Scikit-Learn</span>
+                                <span class="tech-tag">EDA</span>
+                                <span class="tech-tag">Python</span>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Project 7 -->
-                        <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-                            <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
+                    <!-- Project 8 -->
+                    <div class="project-card group">
+                        <div class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white opacity-80" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M11 3v18m4-14l-4 4-4-4m4 4v10" />
-                                </svg>
-                            </div>
-
-                            <div class="p-6">
-                                <a href="https://github.com/abhiyayi04/Movies_Correlation_Project" target="_blank" rel="noopener noreferrer" class="block">
-                                    <h3 class="text-xl font-bold text-dark mb-2 group-hover:text-primary transition-colors">
+                            </svg>
+                        </div>
+                        <div class="p-6">
+                            <a href="https://github.com/abhiyayi04/Movies_Correlation_Project" target="_blank" rel="noopener noreferrer" class="block">
+                                <h3 class="text-xl font-bold text-slate-100 mb-2 group-hover:text-blue-400 transition-colors">
                                     Movie Revenue Correlation Analysis
-                                    </h3>
-                                </a>
-
-                                <p class="text-slate-600 text-sm mb-4">
-                                Conducted exploratory data analysis to identify relationships between movie attributes and gross revenue. 
+                                </h3>
+                            </a>
+                            <p class="text-slate-400 text-sm mb-4">
+                                Conducted exploratory data analysis to identify relationships between movie attributes and gross revenue.
                                 Found strong correlations between budget, votes, and earnings using statistical analysis and visualization.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">EDA</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Pandas</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Matplotlib</span>
-                                <span class="px-2 py-1 bg-white border border-slate-200 rounded text-xs font-medium text-slate-600">Correlation</span>
-                                </div>
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tech-tag">EDA</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">Matplotlib</span>
+                                <span class="tech-tag">Correlation</span>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
+            </div>
 
             <div class="text-center mt-12">
-                <button
-                    id="toggle-projects"
-                    class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-primary/30">
+                <button id="toggle-projects" class="btn-toggle px-8 py-3 rounded-full">
                     View More
                 </button>
             </div>
@@ -720,210 +809,187 @@
     </section>
 
     <!-- Extra-Curricular Section -->
-
-    <section id="extracurriculars" class="py-20 bg-slate-50">
+    <section id="extracurriculars" class="py-20 bg-[#0d1117] border-t border-slate-800/40">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-16 text-dark">
-            Extra-Curriculars & Hobbies
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">
+                Extra-Curriculars & Hobbies
             </h2>
 
             <div class="space-y-20">
 
-                <!-- IMAGE -->
+                <!-- DataFest -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="w-full h-80 overflow-hidden rounded-xl shadow-lg">
-                        <img
-                            src="assets/datafest.jpeg"
-                            alt="ASA DataFest team"
-                            class="w-full h-full object-cover"
-                        />
+                    <div class="w-full h-80 overflow-hidden rounded-xl shadow-lg shadow-black/50">
+                        <img src="assets/datafest.jpeg" alt="ASA DataFest team"
+                            class="w-full h-full object-cover" />
                     </div>
-
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                        <h3 class="text-xl font-bold mb-3">1st Place - ASA DataFest</h3>
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">1st Place - ASA DataFest</h3>
                         <p>
-                            Analyzed how COVID-19 and shifting market dynamics impacted U.S. office leasing and asking rents from 2018-2024. 
-                            During a weekend-long datathon, our team consolidated and cleaned multiple commercial real-estate datasets 
-                            (leasing activity, availability, building class, and macroeconomic indicators) into a unified modeling dataset of 
-                            504 complete market observations. 
+                            Analyzed how COVID-19 and shifting market dynamics impacted U.S. office leasing and asking rents from 2018-2024.
+                            During a weekend-long datathon, our team consolidated and cleaned multiple commercial real-estate datasets
+                            (leasing activity, availability, building class, and macroeconomic indicators) into a unified modeling dataset of
+                            504 complete market observations.
                         </p>
                         <p>
-                            Performed exploratory data analysis to uncover post-COVID patterns across sectors 
-                            and metros, including faster recovery in Texas markets, resilience in Class A assets, and contrasting dynamics between 
-                            cities like Miami and San Francisco. Built and evaluated multiple regression specifications in SAS, including main-effects, 
-                            interaction, and nonlinear models, carefully balancing explanatory power and model stability. Delivered a parsimonious 
-                            main-effects linear regression model explaining approximately 72% of rent variation, with clean diagnostics and minimal 
-                            multicollinearity. 
+                            Performed exploratory data analysis to uncover post-COVID patterns across sectors
+                            and metros, including faster recovery in Texas markets, resilience in Class A assets, and contrasting dynamics between
+                            cities like Miami and San Francisco. Built and evaluated multiple regression specifications in SAS, including main-effects,
+                            interaction, and nonlinear models, carefully balancing explanatory power and model stability. Delivered a parsimonious
+                            main-effects linear regression model explaining approximately 72% of rent variation, with clean diagnostics and minimal
+                            multicollinearity.
                         </p>
                         <p>
-                            The final model distinguished the different pricing impacts of direct versus sublet availability and 
+                            The final model distinguished the different pricing impacts of direct versus sublet availability and
                             quantified demand momentum via leasing volume, producing actionable insights for pricing, underwriting, and leasing strategy.
                         </p>
                     </div>
                 </div>
 
-                <!-- IMAGE -->
+                <!-- AWS Jam -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                    <h3 class="text-xl font-bold mb-3">2nd Place - AWS Jam (ASU)</h3>
-                    <p>
-                        AWS Jam is a competitive, gamified cloud learning experience where participants solve real-world infrastructure 
-                        and application challenges using AWS services in a sandboxed environment. Competing in a team-based AWS Jam Event 
-                        at ASU, I secured 2nd place by rapidly designing, deploying, and troubleshooting cloud solutions under time constraints.
-                    </p>
-                    <p>
-                        Our team worked through open-ended scenarios involving core AWS services such as Amazon EC2, S3, RDS, and AWS Lambda, 
-                        addressing challenges across infrastructure provisioning, security configuration, and system optimization. Performance was 
-                        scored based on accuracy and speed, with live leaderboards reinforcing both technical execution and collaborative problem-solving.
-                    </p>
-                    <p>
-                        This experience strengthened my practical cloud engineering skills, reinforced AWS best practices, and demonstrated my ability to 
-                        perform effectively in a competitive, fast-paced, real-world problem-solving environment.
-                    </p>
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">2nd Place - AWS Jam (ASU)</h3>
+                        <p>
+                            AWS Jam is a competitive, gamified cloud learning experience where participants solve real-world infrastructure
+                            and application challenges using AWS services in a sandboxed environment. Competing in a team-based AWS Jam Event
+                            at ASU, I secured 2nd place by rapidly designing, deploying, and troubleshooting cloud solutions under time constraints.
+                        </p>
+                        <p>
+                            Our team worked through open-ended scenarios involving core AWS services such as Amazon EC2, S3, RDS, and AWS Lambda,
+                            addressing challenges across infrastructure provisioning, security configuration, and system optimization. Performance was
+                            scored based on accuracy and speed, with live leaderboards reinforcing both technical execution and collaborative problem-solving.
+                        </p>
+                        <p>
+                            This experience strengthened my practical cloud engineering skills, reinforced AWS best practices, and demonstrated my ability to
+                            perform effectively in a competitive, fast-paced, real-world problem-solving environment.
+                        </p>
                     </div>
-
-                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg">
-                        <img
-                            src="assets/awsjam.jpeg"
-                            alt="ASA DataFest team"
-                            class="w-full h-full object-cover"
-                        />
+                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg shadow-black/50">
+                        <img src="assets/awsjam.jpeg" alt="AWS Jam competition"
+                            class="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>
-            <div
-                id="more-extracurriculars"
+
+            <!-- Hidden extra content -->
+            <div id="more-extracurriculars"
                 class="overflow-hidden space-y-20 mt-20 opacity-0 transition-opacity duration-300"
-                style="height: 0;"
-            >
+                style="height: 0;">
 
-                <!-- IMAGE -->
+                <!-- Tutoring -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg">
-                        <img
-                            src="assets/tutoring.jpeg"
-                            alt="ASA DataFest team"
-                            class="w-full h-full object-cover"
-                        />
+                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg shadow-black/50">
+                        <img src="assets/tutoring.jpeg" alt="Engineering tutoring"
+                            class="w-full h-full object-cover" />
                     </div>
-
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                        <h3 class="text-xl font-bold mb-3">Executive Engineering Tutor</h3>
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">Executive Engineering Tutor</h3>
                         <p>
-                            Selected as an Executive Engineering Tutor within the Fulton Schools of Engineering Tutoring Centers, 
-                            a dynamic academic support environment. Supported students across multiple learning formats while 
+                            Selected as an Executive Engineering Tutor within the Fulton Schools of Engineering Tutoring Centers,
+                            a dynamic academic support environment. Supported students across multiple learning formats while
                             fostering an engaging atmosphere centered on active learning, critical thinking, and problem-solving.
-                            This role strengthened my technical communication, leadership, mentorship, and cross-team collaboration 
+                            This role strengthened my technical communication, leadership, mentorship, and cross-team collaboration
                             skills, while deepening my ability to explain complex technical concepts clearly to diverse learners.
                         </p>
                         <p>
-                            Delivered in-person and virtual tutoring to 20-30 students weekly in Python, Java, SQL, Database Management 
-                            Systems, and Linux, reinforcing core computer science and engineering concepts aligned with modern industry 
-                            practices. Assisted students in overcoming academic challenges in high-stakes coursework through guided 
+                            Delivered in-person and virtual tutoring to 20-30 students weekly in Python, Java, SQL, Database Management
+                            Systems, and Linux, reinforcing core computer science and engineering concepts aligned with modern industry
+                            practices. Assisted students in overcoming academic challenges in high-stakes coursework through guided
                             problem-solving, conceptual breakdowns, and real-world application of theory.
                         </p>
                         <p>
-                            Collaborated closely with faculty and a team of 10+ Learning Assistants to coordinate academic support efforts, 
-                            align tutoring strategies with course objectives, and improve communication between instructors and students. 
-                            Contributed to the development and refinement of course materials, participated in academic discussion boards to 
+                            Collaborated closely with faculty and a team of 10+ Learning Assistants to coordinate academic support efforts,
+                            align tutoring strategies with course objectives, and improve communication between instructors and students.
+                            Contributed to the development and refinement of course materials, participated in academic discussion boards to
                             provide timely learning support, and attended weekly leadership meetings to enhance tutoring effectiveness and program operations.
                         </p>
                     </div>
                 </div>
 
-                <!-- IMAGE-->
+                <!-- Tour Guide -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                        <h3 class="text-xl font-bold mb-3">ASU Admissions Tour Guide</h3>
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">ASU Admissions Tour Guide</h3>
                         <p>
-                            Served as a campus tour guide for Arizona State University's Student Admissions & Relations team, 
-                            leading prospective students and their families through the ASU campus. Delivered comprehensive 
-                            tours covering academic buildings, residence halls, student resources, and campus life while 
+                            Served as a campus tour guide for Arizona State University's Student Admissions & Relations team,
+                            leading prospective students and their families through the ASU campus. Delivered comprehensive
+                            tours covering academic buildings, residence halls, student resources, and campus life while
                             answering questions related to academics, housing, involvement opportunities, and navigating the university environment.
                         </p>
                         <p>
-                            Provided firsthand insights and practical guidance to help incoming students transition smoothly 
-                            during their initial days at ASU, offering recommendations on campus resources, student organizations, 
-                            and academic support. Utilized Salesforce for family check-in and attendance tracking at the start of 
+                            Provided firsthand insights and practical guidance to help incoming students transition smoothly
+                            during their initial days at ASU, offering recommendations on campus resources, student organizations,
+                            and academic support. Utilized Salesforce for family check-in and attendance tracking at the start of
                             each tour.
                         </p>
                         <p>
-                            This role significantly strengthened my communication, interpersonal, public speaking, and customer-facing 
+                            This role significantly strengthened my communication, interpersonal, public speaking, and customer-facing
                             skills, as well as my ability to adapt explanations to diverse audiences in a professional setting.
                         </p>
                     </div>
-
-                    <div></div> <!-- spacer -->
+                    <div></div>
                 </div>
 
-                <!-- IMAGE -->
+                <!-- Sports -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg">
-                        <img
-                            src="assets/sports.jpeg"
-                            alt="ASA DataFest team"
-                            class="w-full h-full object-cover"
-                        />
+                    <div class="w-full h-92 overflow-hidden rounded-xl shadow-lg shadow-black/50">
+                        <img src="assets/sports.jpeg" alt="Sports activities"
+                            class="w-full h-full object-cover" />
                     </div>
-
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                        <h3 class="text-xl font-bold mb-3">Sports</h3>
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">Sports</h3>
                         <p>
-                            An active sports enthusiast with a strong interest in athletics. Competed in Sun Devil 
-                            Intramural Basketball at Arizona State University, playing in organized 
+                            An active sports enthusiast with a strong interest in athletics. Competed in Sun Devil
+                            Intramural Basketball at Arizona State University, playing in organized
                             league settings that emphasized teamwork, strategy, and performance under pressure.
                         </p>
                         <p>
-                            Previously participated in district-level basketball competitions in India, gaining early 
-                            experience in competitive team sports and disciplined training environments. Also participated in a 
-                            sports day event hosted by an ASU student club, where my team secured 1st place, demonstrating 
+                            Previously participated in district-level basketball competitions in India, gaining early
+                            experience in competitive team sports and disciplined training environments. Also participated in a
+                            sports day event hosted by an ASU student club, where my team secured 1st place, demonstrating
                             leadership, coordination, and competitive drive.
                         </p>
                         <p>
-                            Through sustained involvement in competitive sports, developed strong team collaboration, communication, 
-                            resilience, and time-management skills, successfully balancing athletic commitments alongside academic 
+                            Through sustained involvement in competitive sports, developed strong team collaboration, communication,
+                            resilience, and time-management skills, successfully balancing athletic commitments alongside academic
                             and professional responsibilities.
                         </p>
                     </div>
                 </div>
 
-                <!-- IMAGE -->
+                <!-- MUN -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-4 text-slate-600 leading-relaxed">
-                        <h3 class="text-xl font-bold mb-3">Model United Nations (IIMUN)</h3>
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <h3 class="text-xl font-bold mb-3 text-slate-100">Model United Nations (IIMUN)</h3>
                         <p>
-                            Participated in conferences organized by I.I.M.U.N., the world's largest youth-run organization 
-                            in India, dedicated to empowering young individuals to engage with global and national challenges 
-                            through dialogue and diplomacy. I.I.M.U.N. operates across 35 countries and 220 cities, touching 
-                            over 50 million lives through educational initiatives spanning workshops, conferences, literature 
+                            Participated in conferences organized by I.I.M.U.N., the world's largest youth-run organization
+                            in India, dedicated to empowering young individuals to engage with global and national challenges
+                            through dialogue and diplomacy. I.I.M.U.N. operates across 35 countries and 220 cities, touching
+                            over 50 million lives through educational initiatives spanning workshops, conferences, literature
                             festivals, and policy simulations.
                         </p>
                         <p>
-                            Engaged in structured simulations of international and national governing bodies, including the 
-                            United Nations and Indian Parliament, where I debated policy issues, analyzed geopolitical scenarios, 
-                            and collaborated with diverse delegates to design realistic, solution-driven resolutions. These 
-                            experiences emphasized critical thinking, persuasive communication, negotiation, and collaborative 
+                            Engaged in structured simulations of international and national governing bodies, including the
+                            United Nations and Indian Parliament, where I debated policy issues, analyzed geopolitical scenarios,
+                            and collaborated with diverse delegates to design realistic, solution-driven resolutions. These
+                            experiences emphasized critical thinking, persuasive communication, negotiation, and collaborative
                             problem-solving under formal parliamentary procedures.
                         </p>
                         <p>
-                            Participation in I.I.M.U.N. strengthened my public speaking, diplomacy, and leadership skills, while 
-                            exposing me to global perspectives and enabling meaningful interaction with students from varied academic, 
-                            cultural, and socioeconomic backgrounds. The program played a key role in shaping my ability to articulate 
+                            Participation in I.I.M.U.N. strengthened my public speaking, diplomacy, and leadership skills, while
+                            exposing me to global perspectives and enabling meaningful interaction with students from varied academic,
+                            cultural, and socioeconomic backgrounds. The program played a key role in shaping my ability to articulate
                             complex ideas clearly, think globally, and engage constructively in high-stakes discussions.
                         </p>
                     </div>
-
                     <div></div>
                 </div>
 
             </div>
 
             <div class="text-center mt-16">
-                <button
-                    id="toggle-extracurriculars"
-                    class="bg-primary text-white px-8 py-3 rounded-full font-semibold
-                        hover:bg-blue-700 transition-all shadow-lg hover:shadow-primary/30"
-                >
+                <button id="toggle-extracurriculars" class="btn-toggle px-8 py-3 rounded-full">
                     View More
                 </button>
             </div>
@@ -931,28 +997,24 @@
         </div>
     </section>
 
-
-
     <!-- Footer -->
-    <footer class="bg-dark text-slate-400 py-12">
+    <footer class="bg-[#080d14] border-t border-slate-800/50 text-slate-400 py-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="mb-6">
-                <span class="text-2xl font-bold text-white">Abhi.</span>
+                <span class="text-2xl font-bold text-slate-100">Abhi.</span>
             </div>
             <div class="flex justify-center space-x-8 mb-8">
                 <a href="https://github.com/abhiyayi04" target="_blank"
-                    class="hover:text-white transition-colors flex items-center gap-2 group">
+                    class="hover:text-slate-100 transition-all duration-200 flex items-center gap-2 group hover:-translate-y-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="group-hover:scale-110 transition-transform">
-                        <path
-                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                        </path>
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                     </svg>
                     GitHub
                 </a>
                 <a href="https://linkedin.com/in/abhi-chandra-yayi/" target="_blank"
-                    class="hover:text-white transition-colors flex items-center gap-2 group">
+                    class="hover:text-slate-100 transition-all duration-200 flex items-center gap-2 group hover:-translate-y-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="group-hover:scale-110 transition-transform">
@@ -963,7 +1025,7 @@
                     LinkedIn
                 </a>
                 <a href="mailto:yabhichandra@gmail.com"
-                    class="hover:text-white transition-colors flex items-center gap-2 group">
+                    class="hover:text-slate-100 transition-all duration-200 flex items-center gap-2 group hover:-translate-y-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="group-hover:scale-110 transition-transform">
@@ -973,7 +1035,7 @@
                     Email
                 </a>
             </div>
-            <p class="text-sm">© 2025 Abhi Chandra Yayi. All rights reserved.</p>
+            <p class="text-sm text-slate-500">© 2025 Abhi Chandra Yayi. All rights reserved.</p>
         </div>
     </footer>
 
