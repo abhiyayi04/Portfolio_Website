@@ -59,6 +59,60 @@ if (toggleBtn && moreProjects) {
     });
 }
 
+// Certifications carousel — manage button visibility based on scroll position
+(function () {
+    const track   = document.getElementById('cert-scroll');
+    const prevBtn = document.getElementById('cert-prev');
+    const nextBtn = document.getElementById('cert-next');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function updateButtonStates() {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+
+        // Prev button: hide/disable when at the start
+        if (track.scrollLeft <= 1) {
+            prevBtn.style.display = 'none';
+        } else {
+            prevBtn.style.display = '';
+        }
+
+        // Next button: hide/disable when at the end
+        if (track.scrollLeft >= maxScroll - 1) {
+            nextBtn.style.display = 'none';
+        } else {
+            nextBtn.style.display = '';
+        }
+    }
+
+    function scrollByPage(direction) {
+        const items = track.querySelectorAll('.cert-item');
+        if (items.length === 0) return;
+
+        const itemWidth = items[0].offsetWidth + 24; // width + gap
+        const amount = itemWidth * Math.floor(track.clientWidth / itemWidth);
+
+        if (direction === 'next') {
+            track.scrollBy({ left: amount, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: -amount, behavior: 'smooth' });
+        }
+    }
+
+    // Button click handlers
+    nextBtn.addEventListener('click', () => scrollByPage('next'));
+    prevBtn.addEventListener('click', () => scrollByPage('prev'));
+
+    // Update button states on scroll
+    track.addEventListener('scroll', updateButtonStates, { passive: true });
+
+    // Initial button state
+    updateButtonStates();
+
+    // Update on window resize
+    window.addEventListener('resize', updateButtonStates);
+})();
+
 const ecBtn = document.getElementById('toggle-extracurriculars');
 const ecMore = document.getElementById('more-extracurriculars');
 

@@ -198,6 +198,31 @@
             transform: translateY(-1px);
         }
 
+        /* Certifications carousel */
+        .cert-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: 0.5rem;
+        }
+        .cert-scroll::-webkit-scrollbar { display: none; }
+        .cert-item {
+            flex-shrink: 0;
+            width: calc(33.333% - 1rem);
+            scroll-snap-align: start;
+        }
+        @media (max-width: 1024px) {
+            .cert-item { width: calc(50% - 0.75rem); }
+        }
+        @media (max-width: 640px) {
+            .cert-item { width: 82%; }
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-base); }
@@ -358,11 +383,12 @@
                     <div class="flex flex-wrap gap-3">
                         <span class="skill-pill">Neural Networks</span>
                         <span class="skill-pill">Transformers</span>
-                        <span class="skill-pill">LLMs & Fine-Tuning</span>
+                        <span class="skill-pill">LLM Fine-Tuning</span>
                         <span class="skill-pill">RAG</span>
                         <span class="skill-pill">MLOps</span>
-                        <span class="skill-pill">Model Evaluation & Cross-Validation</span>
+                        <span class="skill-pill">Model Evaluation</span>
                         <span class="skill-pill">Prompt Engineering</span>
+                        <span class="skill-pill">MCP</span>
                     </div>
                 </div>
 
@@ -378,6 +404,8 @@
                         <span class="skill-pill">GitHub</span>
                         <span class="skill-pill">Docker</span>
                         <span class="skill-pill">Kubernetes</span>
+                        <span class="skill-pill">Tableau</span>
+                        <span class="skill-pill">Snowflake</span>
                         <span class="skill-pill">Microsoft Office</span>
                         <span class="skill-pill">Claude Code</span>
                     </div>
@@ -436,9 +464,9 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-16 text-slate-100">Certifications</h2>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="cert-scroll" class="cert-scroll">
 
-                <div class="card-dark p-6 rounded-2xl">
+                <div class="cert-item card-dark p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Back-End Developer Professional Certificate
                     </h3>
@@ -450,13 +478,11 @@
                     <span class="badge-blue">Issued Nov 2025</span>
                 </div>
 
-                <div class="card-dark p-6 rounded-2xl">
+                <div class="cert-item card-dark p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Machine Learning Specialization
                     </h3>
-                    <p class="text-blue-400 font-medium mb-1">
-                        DeepLearning.AI & Stanford Online
-                    </p>
+                    <p class="text-blue-400 font-medium mb-1">DeepLearning.AI & Stanford Online</p>
                     <p class="text-sm text-slate-400 mb-3">
                         Covered supervised learning, neural networks, and practical ML workflows,
                         with hands-on projects using Python.
@@ -464,7 +490,7 @@
                     <span class="badge-blue">Issued Aug 2025</span>
                 </div>
 
-                <div class="card-dark p-6 rounded-2xl">
+                <div class="cert-item card-dark p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Alteryx Designer Core Certification
                     </h3>
@@ -476,7 +502,7 @@
                     <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
-                <div class="card-dark p-6 rounded-2xl">
+                <div class="cert-item card-dark p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Project Management Professional Certificate
                     </h3>
@@ -488,7 +514,7 @@
                     <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
-                <div class="card-dark p-6 rounded-2xl">
+                <div class="cert-item card-dark p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Introduction to Data Engineering
                     </h3>
@@ -500,7 +526,7 @@
                     <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
-                <div class="card-dark p-6 rounded-2xl">
+                <div class="cert-item card-dark p-6 rounded-2xl">
                     <h3 class="text-lg font-bold text-slate-100 mb-2">
                         Introduction to Microsoft Dynamics 365
                     </h3>
@@ -512,6 +538,24 @@
                     <span class="badge-blue">Issued Dec 2025</span>
                 </div>
 
+            </div>
+
+            <!-- Carousel navigation -->
+            <div class="flex justify-center items-center gap-3 mt-8">
+                <button id="cert-prev"
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-[#1c2a3e] border border-slate-700/50 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e3050] transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <button id="cert-next"
+                    class="w-10 h-10 rounded-full flex items-center justify-center bg-[#1c2a3e] border border-slate-700/50 text-slate-400 hover:text-blue-400 hover:border-blue-500/50 hover:bg-[#1e3050] transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
